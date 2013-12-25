@@ -22,6 +22,9 @@ namespace ArduinoDMX
         {
             InitializeComponent();
 
+            colorWheel1.Lightness = 127;
+            colorWheel1.Saturation = 255;
+
             _arduino = new SerialConnector("COM3", 9600);
 
             _arduino.DmxSet(7, 255);
@@ -34,6 +37,17 @@ namespace ArduinoDMX
             _arduino.DmxSet(LedPunchChannel, c.R);
             _arduino.DmxSet((ushort)(LedPunchChannel + 1), c.G);
             _arduino.DmxSet((ushort)(LedPunchChannel + 2), c.B);
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            byte value = (byte)Map((int)numericUpDown1.Value, 0, 100, 16, 255);
+            _arduino.DmxSet((ushort)(LedPunchChannel + 4), value);
+        }
+
+        private int Map(int x, int in_min, int in_max, int out_min, int out_max)
+        {
+            return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
         }
 
     }
