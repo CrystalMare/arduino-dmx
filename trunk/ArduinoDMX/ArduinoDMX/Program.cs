@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Windows.Forms;
 
 namespace ArduinoDMX
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
-            var app = new ArduinoDmx();
+            Application.EnableVisualStyles();
+            Application.Run(new UserInterface());
         }
     }
 }
