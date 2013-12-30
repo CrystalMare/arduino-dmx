@@ -16,7 +16,6 @@ namespace ArduinoDMX
         private SerialConnector _arduino;
 
         private readonly ushort LedPunchChannel = 1;
-        
 
         public UserInterface()
         {
@@ -28,6 +27,7 @@ namespace ArduinoDMX
             _arduino = new SerialConnector("COM3", 9600);
 
             _arduino.DmxSet(7, 255);
+
         }
 
         private void colorWheel1_MouseUp(object sender, MouseEventArgs e)
@@ -50,5 +50,26 @@ namespace ArduinoDMX
             return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
         }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void exitApplication()
+        {
+            _arduino.Dispose();
+            Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _arduino.ResetFixtures();
+            _arduino.DmxSet(7, 255);
+        }
+
+        private void UserInterface_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            exitApplication();
+        }
     }
 }

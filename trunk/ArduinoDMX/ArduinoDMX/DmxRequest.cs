@@ -15,7 +15,7 @@
             Instruction = i;
         }
         /// <summary>
-        /// An emtpy contain that can contain all information for a DMX Request
+        /// An emtpy DMX Request that can contain all information for a DMX Request
         /// </summary>
         public DmxRequest() { }
 
