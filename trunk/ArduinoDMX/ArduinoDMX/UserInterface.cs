@@ -27,7 +27,6 @@ namespace ArduinoDMX
             _arduino = new SerialConnector("COM3", 9600);
 
             _arduino.DmxSet(7, 255);
-
         }
 
         private void colorWheel1_MouseUp(object sender, MouseEventArgs e)
