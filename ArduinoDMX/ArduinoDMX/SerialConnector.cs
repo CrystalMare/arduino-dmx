@@ -15,7 +15,7 @@ namespace ArduinoDMX
 
         private Dictionary<ushort, byte> _localDmx = new Dictionary<ushort, byte>();
 
-        private byte[] _clearMessage= { (byte)Instruction.Clear, byte.MinValue, byte.MinValue, byte.MinValue, (byte)Instruction.Stop };
+        private readonly byte[] _clearMessage= { (byte)Instruction.Clear, byte.MinValue, byte.MinValue, byte.MinValue, (byte)Instruction.Stop };
 
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace ArduinoDMX
         public SerialConnector(string port, int speed)
         {
             //Initialize serial port
-            _serial = new SerialPort(port, speed, Parity.None, 8, StopBits.One);
+            _serial = new SerialPort(port, speed, Parity.None, 8, StopBits.One); 
             //Add event handler to print an error from arduino
             _serial.DataReceived += new SerialDataReceivedEventHandler(_serial_DataReceived);
             _serial.Open();
