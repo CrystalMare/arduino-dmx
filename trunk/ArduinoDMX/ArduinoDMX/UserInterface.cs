@@ -15,33 +15,31 @@ namespace ArduinoDMX
 
         private SerialConnector _arduino;
 
-        private readonly ushort LedPunchChannel = 1;
+        private PortSelector _selector;
+
+        public string port;
+        public bool newPort;
+
+        private const ushort LedPunchChannel = 1;
 
         public UserInterface()
         {
             InitializeComponent();
 
-            colorWheel1.Lightness = 127;
-            colorWheel1.Saturation = 255;
-
-            _arduino = new SerialConnector("COM3", 9600);
-
-            _arduino.DmxSet(7, 255);
+            setLabelState(false);
         }
 
-        private void colorWheel1_MouseUp(object sender, MouseEventArgs e)
-        {
-            var c = ColorMath.HslToRgb(new HslColor(colorWheel1.Hue, colorWheel1.Saturation, colorWheel1.Lightness));
-
-            _arduino.DmxSet(LedPunchChannel, c.R);
-            _arduino.DmxSet((ushort)(LedPunchChannel + 1), c.G);
-            _arduino.DmxSet((ushort)(LedPunchChannel + 2), c.B);
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-            byte value = (byte)Map((int)numericUpDown1.Value, 0, 100, 16, 255);
-            _arduino.DmxSet((ushort)(LedPunchChannel + 4), value);
+        private void setLabelState(Boolean state) {
+            if (state)
+            {
+                arduinoStatusLabel.ForeColor = Color.Green;
+                arduinoStatusLabel.Text = "Ready";
+            }
+            else
+            {
+                arduinoStatusLabel.ForeColor = Color.Red;
+                arduinoStatusLabel.Text = "Not Ready";
+            }
         }
 
         private int Map(int x, int in_min, int in_max, int out_min, int out_max)
@@ -56,19 +54,20 @@ namespace ArduinoDMX
 
         private void exitApplication()
         {
-            _arduino.Dispose();
+            if (_arduino != null) _arduino.Dispose();
+            
             Application.Exit();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            _arduino.ResetFixtures();
-            _arduino.DmxSet(7, 255);
         }
 
         private void UserInterface_FormClosed(object sender, FormClosedEventArgs e)
         {
             exitApplication();
+        }
+
+        private void UserInterface_Shown(object sender, EventArgs e)
+        {
+            _selector = new PortSelector(this);
+            _selector.ShowDialog();
         }
     }
 }

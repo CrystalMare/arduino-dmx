@@ -6,12 +6,16 @@ const unsigned int MAX_CHANNEL = 7;
 
 void setup() {
   initializeSerial(9600);
-  DmxSimple.maxChannel(MAX_CHANNEL);
+  //DmxSimple.maxChannel(MAX_CHANNEL);
+  
+  //INIT
 }
 
 void loop() {
   if (Serial.available() < 5) return;
   if (!handleSerial(dmxMessage)) return;
+  
+  return;
 
   switch (dmxMessage[0]) {
   case 2: //SET
