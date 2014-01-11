@@ -36,9 +36,10 @@ namespace ArduinoDMX
         private void button1_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem == null) return;
-            ui.port = listBox1.SelectedItem.ToString();
-            ui.newPort = true;
-            this.Close();
+            if (new SerialConnector(listBox1.SelectedItem.ToString(), 9600).TestConnection())
+            {
+                MessageBox.Show("Win");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

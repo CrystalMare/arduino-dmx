@@ -11,12 +11,16 @@ namespace ArduinoDMX
         private Thread _connection;
         private Boolean _keepConnection = true;
 
+
+        private Thread _discover;
+        private int _responseState = 0;
+
         private LinkedList<DmxRequest> _requests = new LinkedList<DmxRequest>();
 
         private Dictionary<ushort, byte> _localDmx = new Dictionary<ushort, byte>();
 
+        private readonly byte[] _discoverMessage = { (byte)Instruction.Discover, (byte)Instruction.Stop };
         private readonly byte[] _clearMessage = { (byte)Instruction.Clear, byte.MinValue, byte.MinValue, byte.MinValue, (byte)Instruction.Stop };
-
 
         /// <summary>
         /// Initializes a new instance of a SerialConnector. Can be used to communicate with an Arduino with DMX shield.
@@ -118,7 +122,14 @@ namespace ArduinoDMX
         /// <param name="e"></param>
         private void _serial_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            Console.WriteLine(_serial.ReadLine());
+            byte data1 = (byte)_serial.ReadByte();
+
+            if (data1 == (byte)Instruction.Discover)
+                _responseState = 1;
+            else
+                _responseState = 2;
+
+            Console.WriteLine(data1.ToString() + _serial.ReadLine());
         }
 
         public void Dispose()
@@ -132,6 +143,32 @@ namespace ArduinoDMX
         public void ResetFixtures()
         {
             _requests.AddFirst(new DmxRequest(1, 1, Instruction.Clear));
+        }
+
+        public Boolean TestConnection()
+        {
+            _keepConnection = false;
+
+            _discover = new Thread(new ThreadStart(SendDiscover));
+            Thread.Sleep(1000);
+
+            switch (_responseState)
+            {
+                case 1:
+                    return true;
+                case 2: 
+                    return false;
+                default:
+                    return false;
+            }
+
+        }
+
+        private void SendDiscover()
+        {
+            _serial.Write(_discoverMessage, 0, _discoverMessage.Length);
+            int timeout = 0;
+            while (_responseState == 0 && timeout < 1000) timeout++ ;
         }
     }
 }

@@ -9,6 +9,7 @@ namespace ArduinoDMX
     {
         Set = 53,
         Clear = 43,
-        Stop = 23
+        Stop = 23,
+        Discover = 44
     }
 }
