@@ -15,7 +15,7 @@ namespace ArduinoDMX
 
         private Dictionary<ushort, byte> _localDmx = new Dictionary<ushort, byte>();
 
-        private readonly byte[] _clearMessage= { (byte)Instruction.Clear, byte.MinValue, byte.MinValue, byte.MinValue, (byte)Instruction.Stop };
+        private readonly byte[] _clearMessage = { (byte)Instruction.Clear, byte.MinValue, byte.MinValue, byte.MinValue, (byte)Instruction.Stop };
 
 
         /// <summary>
