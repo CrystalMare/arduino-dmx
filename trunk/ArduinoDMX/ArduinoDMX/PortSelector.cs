@@ -13,17 +13,18 @@ namespace ArduinoDMX
     public partial class PortSelector : Form
     {
 
-        private UserInterface ui;
+        private UserInterface _main;
 
         public PortSelector(UserInterface i)
         {
-            ui = i;
-            InitializeComponent();
-            updateList();
 
+            InitializeComponent();
+            UpdateList();
+            _main = i;
         }
 
-        private void updateList()
+
+        private void UpdateList()
         {
             listBox1.Items.Clear();
             var ports = SerialPort.GetPortNames();
@@ -36,15 +37,30 @@ namespace ArduinoDMX
         private void button1_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem == null) return;
-            if (new SerialConnector(listBox1.SelectedItem.ToString(), 9600).TestConnection())
+            if (IsValidDevice(listBox1.SelectedItem.ToString(), 9600))
             {
-                MessageBox.Show("Win");
+                _main.port = listBox1.SelectedItem.ToString();
+                _main.newPort = true;
+                this.Close();
             }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            updateList();
+            UpdateList();
+        }
+
+        private Boolean IsValidDevice(string port, int speed)
+        {
+            
+            int i = 0;
+            while (i < 3)
+            {
+                if (new SerialConnector().TestConnection(listBox1.SelectedItem.ToString(), 9600)) return true;
+                else i++;
+            }
+            return false;
         }
     }
 }

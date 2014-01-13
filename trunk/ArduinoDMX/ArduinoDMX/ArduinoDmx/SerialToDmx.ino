@@ -6,17 +6,19 @@ const byte DISCOVER = 44;
 //Handles serial messages
 boolean handleSerial(int * message) {
 
-  if (Serial.peek() == DISCOVER) {
-    Serial.println(DISCOVER);
+  if (Serial.peek() != SET && Serial.peek() != CLEAR) {
+    byte bdata = Serial.read();
+    if (bdata == DISCOVER) {
+      Serial.write(DISCOVER);
+      clearSerial();
+      return false;
+    }
     clearSerial();
-    return false;  
+    return false;
   }
-
   if (Serial.available() < 5) return false;
   for (int i = 0; i < 3; i++) message[i] = 0; //Reset message array
-
-  if (Serial.available() == 0) return false;
-
+  
   //Instruction
   byte data = Serial.read();
   switch(data) {
@@ -64,6 +66,7 @@ void initializeSerial(int baudrate) {
 void clearSerial() {
   while (Serial.available() > 0) Serial.read(); 
 }
+
 
 
 

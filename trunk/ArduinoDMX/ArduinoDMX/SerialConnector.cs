@@ -7,6 +7,8 @@ namespace ArduinoDMX
 {
     class SerialConnector
     {
+        private int _baudrate;
+        private String _port;
         private SerialPort _serial;
         private Thread _connection;
         private Boolean _keepConnection = true;
@@ -15,7 +17,9 @@ namespace ArduinoDMX
 
         private Dictionary<ushort, byte> _localDmx = new Dictionary<ushort, byte>();
 
-        private readonly byte[] _discoverMessage = { (byte)Instruction.Discover, (byte)Instruction.Stop };
+        private Boolean _valid;
+
+        private readonly byte[] _discoverMessage = { (byte)Instruction.Discover };
         private readonly byte[] _clearMessage = { (byte)Instruction.Clear, byte.MinValue, byte.MinValue, byte.MinValue, (byte)Instruction.Stop };
 
         /// <summary>
@@ -25,6 +29,8 @@ namespace ArduinoDMX
         /// <param name="speed">The speed in baud</param>
         public SerialConnector(string port, int speed)
         {
+            this._port = port;
+            this._baudrate = speed;
             //Initialize serial port
             _serial = new SerialPort(port, speed, Parity.None, 8, StopBits.One); 
             //Add event handler to print an error from arduino
@@ -35,6 +41,11 @@ namespace ArduinoDMX
             _connection = new Thread(new ThreadStart(HandleRequests));
             _connection.Start();
         }
+
+        /// <summary>
+        /// Initializes a new instance of SerialConnector. This can be used to test a connection.
+        /// </summary>
+        public SerialConnector() { }
 
         /// <summary>
         /// Updates the local dmx memory
@@ -134,10 +145,41 @@ namespace ArduinoDMX
             _requests.AddFirst(new DmxRequest(1, 1, Instruction.Clear));
         }
 
-        public Boolean TestConnection()
+        public Boolean TestConnection(string port, int speed)
         {
-            _serial.Write(_discoverMessage, 0, _discoverMessage.Length);
-            return true;
+            //Check if initialized via normal constructor
+            if (_port != null) throw new ApplicationException("Can't run method in normal Constructed mode");
+
+            try
+            {
+                //Initialize serial port
+                _serial = new SerialPort(port, speed, Parity.None, 8, StopBits.One);
+                _serial.Open();
+                _serial.Write(_discoverMessage, 0, _discoverMessage.Length);
+                for (int i = 0; i < 1000; i += 50)
+                {
+                    if (_serial.BytesToRead >= 1)
+                    {
+                        Thread.Sleep(100);
+                        int data = _serial.ReadByte();
+                        Console.WriteLine(data);
+                        if (data == 44)
+                        {
+                            _serial.Close();
+                            _serial.Dispose();
+                            return true;
+                        }
+                    }
+                    Thread.Sleep(50);
+                }
+                _serial.Close();
+                _serial.Dispose();
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
