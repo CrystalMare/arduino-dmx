@@ -70,7 +70,6 @@
     </Compile>
     <Compile Include="DmxRequest.cs" />
     <Compile Include="Instruction.cs" />
-    <Compile Include="Libraries\USBClass.cs" />
     <Compile Include="PortSelector.cs">
       <SubType>Form</SubType>
     </Compile>

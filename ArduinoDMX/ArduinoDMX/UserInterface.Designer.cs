@@ -95,13 +95,14 @@
             // 
             this.colorWheel1.Hue = ((byte)(0));
             this.colorWheel1.Lightness = ((byte)(0));
-            this.colorWheel1.Location = new System.Drawing.Point(72, 68);
+            this.colorWheel1.Location = new System.Drawing.Point(12, 27);
             this.colorWheel1.Name = "colorWheel1";
             this.colorWheel1.Saturation = ((byte)(0));
             this.colorWheel1.SecondaryHues = null;
             this.colorWheel1.Size = new System.Drawing.Size(273, 246);
             this.colorWheel1.TabIndex = 5;
             this.colorWheel1.Text = "colorWheel1";
+            this.colorWheel1.HueChanged += new System.EventHandler(this.colorWheel1_MouseUp);
             // 
             // UserInterface
             // 

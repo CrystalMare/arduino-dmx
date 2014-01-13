@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Unclassified.Drawing;
+using System.Threading;
 
 namespace ArduinoDMX
 {
@@ -19,13 +20,13 @@ namespace ArduinoDMX
 
         public string port;
         public bool newPort;
+        public bool active;
 
         private const ushort LedPunchChannel = 1;
 
         public UserInterface()
         {
             InitializeComponent();
-
             setLabelState(false);
         }
 
@@ -68,6 +69,31 @@ namespace ArduinoDMX
         {
             _selector = new PortSelector(this);
             _selector.ShowDialog();
+            if (newPort)
+            {
+                newPort = false;
+                StartArduino(port, 9600);
+            }
+        }
+
+        private void StartArduino(string port, int speed)
+        {
+            _arduino = new SerialConnector(port, speed);
+            Thread.Sleep(100);
+            _arduino.ResetFixtures();
+            _arduino.DmxSet((ushort)(LedPunchChannel) + 6, 255);
+            colorWheel1.Saturation = 255;
+            colorWheel1.Lightness = 127;
+            active = true;
+        }
+
+        private void colorWheel1_MouseUp(object sender, EventArgs e)
+        {
+            if (!active) return;
+            var c = ColorMath.HslToRgb(new HslColor(colorWheel1.Hue, colorWheel1.Saturation, colorWheel1.Lightness));
+            _arduino.DmxSet(LedPunchChannel + 0, c.R);
+            _arduino.DmxSet(LedPunchChannel + 1, c.G);
+            _arduino.DmxSet(LedPunchChannel + 2, c.B);
         }
     }
 }
