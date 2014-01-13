@@ -11,10 +11,6 @@ namespace ArduinoDMX
         private Thread _connection;
         private Boolean _keepConnection = true;
 
-
-        private Thread _discover;
-        private int _responseState = 0;
-
         private LinkedList<DmxRequest> _requests = new LinkedList<DmxRequest>();
 
         private Dictionary<ushort, byte> _localDmx = new Dictionary<ushort, byte>();
@@ -122,14 +118,7 @@ namespace ArduinoDMX
         /// <param name="e"></param>
         private void _serial_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            byte data1 = (byte)_serial.ReadByte();
-
-            if (data1 == (byte)Instruction.Discover)
-                _responseState = 1;
-            else
-                _responseState = 2;
-
-            Console.WriteLine(data1.ToString() + _serial.ReadLine());
+            Console.WriteLine(_serial.ReadLine());
         }
 
         public void Dispose()
@@ -147,28 +136,8 @@ namespace ArduinoDMX
 
         public Boolean TestConnection()
         {
-            _keepConnection = false;
-
-            _discover = new Thread(new ThreadStart(SendDiscover));
-            Thread.Sleep(1000);
-
-            switch (_responseState)
-            {
-                case 1:
-                    return true;
-                case 2: 
-                    return false;
-                default:
-                    return false;
-            }
-
-        }
-
-        private void SendDiscover()
-        {
             _serial.Write(_discoverMessage, 0, _discoverMessage.Length);
-            int timeout = 0;
-            while (_responseState == 0 && timeout < 1000) timeout++ ;
+            return true;
         }
     }
 }

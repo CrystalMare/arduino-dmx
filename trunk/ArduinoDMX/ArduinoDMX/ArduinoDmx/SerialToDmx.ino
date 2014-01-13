@@ -1,9 +1,18 @@
 const byte SET    = 53;
 const byte CLEAR  = 43;
 const byte STOP   = 23;
+const byte DISCOVER = 44;
 
 //Handles serial messages
 boolean handleSerial(int * message) {
+
+  if (Serial.peek() == DISCOVER) {
+    Serial.println(DISCOVER);
+    clearSerial();
+    return false;  
+  }
+
+  if (Serial.available() < 5) return false;
   for (int i = 0; i < 3; i++) message[i] = 0; //Reset message array
 
   if (Serial.available() == 0) return false;
