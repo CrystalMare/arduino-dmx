@@ -57,7 +57,7 @@ namespace ArduinoDMX
             int i = 0;
             while (i < 3)
             {
-                if (new SerialConnector().TestConnection(listBox1.SelectedItem.ToString(), 9600)) return true;
+                if (new SerialConnector().TestConnection(listBox1.SelectedItem.ToString(), speed)) return true;
                 else i++;
             }
             return false;

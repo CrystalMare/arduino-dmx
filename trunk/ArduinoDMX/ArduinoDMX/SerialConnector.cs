@@ -8,7 +8,8 @@ namespace ArduinoDMX
     class SerialConnector
     {
         private int _baudrate;
-        private String _port;
+        private string _port;
+
         private SerialPort _serial;
         private Thread _connection;
         private Boolean _keepConnection = true;
@@ -132,7 +133,7 @@ namespace ArduinoDMX
             Console.WriteLine(_serial.ReadLine());
         }
 
-        public void Dispose()
+        protected void Dispose()
         {
             _keepConnection = false;
             while (_connection.IsAlive);

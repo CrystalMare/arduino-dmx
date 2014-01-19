@@ -20,7 +20,6 @@ namespace ArduinoDMX
 
         public string port;
         public bool newPort;
-        public bool active;
 
         private const ushort LedPunchChannel = 1;
 
@@ -81,6 +80,7 @@ namespace ArduinoDMX
             _arduino = new SerialConnector(port, speed);
             Thread.Sleep(100);
             _arduino.ResetFixtures();
+            Thread.Sleep(100);
             _arduino.DmxSet((ushort)(LedPunchChannel) + 6, 255);
             colorWheel1.Saturation = 255;
             colorWheel1.Lightness = 127;
@@ -94,6 +94,12 @@ namespace ArduinoDMX
             _arduino.DmxSet(LedPunchChannel + 0, c.R);
             _arduino.DmxSet(LedPunchChannel + 1, c.G);
             _arduino.DmxSet(LedPunchChannel + 2, c.B);
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            if (trackBar1.Value == 0) _arduino.DmxSet(LedPunchChannel + 4, 0);
+            else _arduino.DmxSet(LedPunchChannel + 4, (byte)Map(trackBar1.Value, 0, 100, 16, 255));
         }
     }
 }

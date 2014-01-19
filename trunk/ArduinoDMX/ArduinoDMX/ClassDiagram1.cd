@@ -1,0 +1,532 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Comment CommentText="Arduino via Serial @ 9660 bit/sec&#xD;&#xA;">
+    <Position X="10.688" Y="4.104" Height="0.291" Width="2.075" />
+  </Comment>
+  <Class Name="ArduinoDMX.SerialConnector">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAACCAAAAgAQCAAAAgAQAACAQCAACIABQAARAA=</HashCode>
+      <FileName>SerialConnector.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_serial" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_requests" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ArduinoDMX.UserInterface">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="arduinoDMXToolStripMenuItem" Hidden="true" />
+      <Field Name="arduinoStatusLabel" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Field Name="exitToolStripMenuItem" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Field Name="menuStrip1" Hidden="true" />
+      <Method Name="setLabelState" Hidden="true" />
+      <Field Name="statusStrip1" Hidden="true" />
+      <Field Name="toolStripSplitButton1" Hidden="true" />
+      <Field Name="trackBar1" Hidden="true" />
+      <Method Name="trackBar1_ValueChanged" Hidden="true" />
+      <Method Name="UserInterface_FormClosed" Hidden="true" />
+      <Method Name="UserInterface_Shown" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AUCAQAACADAABEAAAAGAAAAGAAgAAAgEgCgAAlIAAAk=</HashCode>
+      <FileName>UserInterface.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_arduino" />
+      <Field Name="_selector" />
+      <Field Name="colorWheel1" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ArduinoDMX.DmxRequest">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAgAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DmxRequest.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Instruction" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ArduinoDMX.PortSelector">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Field Name="button1" Hidden="true" />
+      <Method Name="button1_Click" Hidden="true" />
+      <Field Name="button2" Hidden="true" />
+      <Method Name="button2_Click" Hidden="true" />
+      <Field Name="button3" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAACAAAAIAAACAAAACCAA4AAAAAGACAAAAAAA=</HashCode>
+      <FileName>PortSelector.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_main" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ArduinoDMX.Program">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Windows.Forms.Form" Collapsed="true">
+    <Position X="3" Y="4.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="System.Windows.Forms.Form.ControlCollection" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.IO.Ports.SerialPort" Collapsed="true">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Unclassified.UI.ColorWheel">
+    <Position X="4.75" Y="3.75" Width="1.5" />
+    <Members>
+      <Method Name="BitmapReadBytes" Hidden="true" />
+      <Method Name="BitmapSetPixel" Hidden="true" />
+      <Method Name="BitmapWriteBytes" Hidden="true" />
+      <Method Name="ColorWheel" Hidden="true" />
+      <Field Name="draggingHue" Hidden="true" />
+      <Field Name="draggingSL" Hidden="true" />
+      <Method Name="GetDistance" Hidden="true" />
+      <Field Name="hue" Hidden="true" />
+      <Event Name="HueChanged" Hidden="true" />
+      <Field Name="lightness" Hidden="true" />
+      <Method Name="Mod" Hidden="true" />
+      <Method Name="OnHueChanged" Hidden="true" />
+      <Method Name="OnMouseDown" Hidden="true" />
+      <Method Name="OnMouseMove" Hidden="true" />
+      <Method Name="OnMouseUp" Hidden="true" />
+      <Method Name="OnPaint" Hidden="true" />
+      <Method Name="OnSizeChanged" Hidden="true" />
+      <Method Name="OnSLChanged" Hidden="true" />
+      <Method Name="PrepareSLBitmap" Hidden="true" />
+      <Method Name="PrepareWheelBitmap" Hidden="true" />
+      <Field Name="saturation" Hidden="true" />
+      <Field Name="secondaryHues" Hidden="true" />
+      <Property Name="SecondaryHues" Hidden="true" />
+      <Field Name="slBitmap" Hidden="true" />
+      <Event Name="SLChanged" Hidden="true" />
+      <Property Name="TabStop" Hidden="true" />
+      <Field Name="wheelBitmap" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Protected" Collapsed="true" />
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CACRBQhCEAABAAAAACIBACIAABQgIAAAYAARAAYCgAA=</HashCode>
+      <FileName>Libraries\ColorWheel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Windows.Forms.Control">
+    <Position X="6.5" Y="4.25" Width="1.5" />
+    <Members>
+      <Method Name="AccessibilityNotifyClients" Hidden="true" />
+      <Property Name="AccessibilityObject" Hidden="true" />
+      <Property Name="AccessibleDefaultActionDescription" Hidden="true" />
+      <Property Name="AccessibleDescription" Hidden="true" />
+      <Property Name="AccessibleName" Hidden="true" />
+      <Property Name="AccessibleRole" Hidden="true" />
+      <Property Name="AllowDrop" Hidden="true" />
+      <Property Name="Anchor" Hidden="true" />
+      <Property Name="AutoScrollOffset" Hidden="true" />
+      <Property Name="AutoSize" Hidden="true" />
+      <Event Name="AutoSizeChanged" Hidden="true" />
+      <Property Name="BackColor" Hidden="true" />
+      <Event Name="BackColorChanged" Hidden="true" />
+      <Property Name="BackgroundImage" Hidden="true" />
+      <Event Name="BackgroundImageChanged" Hidden="true" />
+      <Property Name="BackgroundImageLayout" Hidden="true" />
+      <Event Name="BackgroundImageLayoutChanged" Hidden="true" />
+      <Method Name="BeginInvoke" Hidden="true" />
+      <Property Name="BindingContext" Hidden="true" />
+      <Event Name="BindingContextChanged" Hidden="true" />
+      <Property Name="Bottom" Hidden="true" />
+      <Property Name="Bounds" Hidden="true" />
+      <Method Name="BringToFront" Hidden="true" />
+      <Property Name="CanEnableIme" Hidden="true" />
+      <Property Name="CanFocus" Hidden="true" />
+      <Property Name="CanRaiseEvents" Hidden="true" />
+      <Property Name="CanSelect" Hidden="true" />
+      <Property Name="Capture" Hidden="true" />
+      <Property Name="CausesValidation" Hidden="true" />
+      <Event Name="CausesValidationChanged" Hidden="true" />
+      <Event Name="ChangeUICues" Hidden="true" />
+      <Property Name="CheckForIllegalCrossThreadCalls" Hidden="true" />
+      <Event Name="Click" Hidden="true" />
+      <Property Name="ClientRectangle" Hidden="true" />
+      <Property Name="ClientSize" Hidden="true" />
+      <Event Name="ClientSizeChanged" Hidden="true" />
+      <Property Name="CompanyName" Hidden="true" />
+      <Method Name="Contains" Hidden="true" />
+      <Property Name="ContainsFocus" Hidden="true" />
+      <Property Name="ContextMenu" Hidden="true" />
+      <Event Name="ContextMenuChanged" Hidden="true" />
+      <Property Name="ContextMenuStrip" Hidden="true" />
+      <Event Name="ContextMenuStripChanged" Hidden="true" />
+      <Method Name="Control" Hidden="true" />
+      <Event Name="ControlAdded" Hidden="true" />
+      <Event Name="ControlRemoved" Hidden="true" />
+      <Property Name="Controls" Hidden="true" />
+      <Method Name="CreateAccessibilityInstance" Hidden="true" />
+      <Method Name="CreateControl" Hidden="true" />
+      <Method Name="CreateControlsInstance" Hidden="true" />
+      <Property Name="Created" Hidden="true" />
+      <Method Name="CreateGraphics" Hidden="true" />
+      <Method Name="CreateHandle" Hidden="true" />
+      <Property Name="CreateParams" Hidden="true" />
+      <Property Name="Cursor" Hidden="true" />
+      <Event Name="CursorChanged" Hidden="true" />
+      <Property Name="DataBindings" Hidden="true" />
+      <Property Name="DefaultBackColor" Hidden="true" />
+      <Property Name="DefaultCursor" Hidden="true" />
+      <Property Name="DefaultFont" Hidden="true" />
+      <Property Name="DefaultForeColor" Hidden="true" />
+      <Property Name="DefaultImeMode" Hidden="true" />
+      <Property Name="DefaultMargin" Hidden="true" />
+      <Property Name="DefaultMaximumSize" Hidden="true" />
+      <Property Name="DefaultMinimumSize" Hidden="true" />
+      <Property Name="DefaultPadding" Hidden="true" />
+      <Property Name="DefaultSize" Hidden="true" />
+      <Method Name="DefWndProc" Hidden="true" />
+      <Method Name="DestroyHandle" Hidden="true" />
+      <Property Name="DisplayRectangle" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Property Name="Disposing" Hidden="true" />
+      <Property Name="Dock" Hidden="true" />
+      <Event Name="DockChanged" Hidden="true" />
+      <Method Name="DoDragDrop" Hidden="true" />
+      <Property Name="DoubleBuffered" Hidden="true" />
+      <Event Name="DoubleClick" Hidden="true" />
+      <Event Name="DragDrop" Hidden="true" />
+      <Event Name="DragEnter" Hidden="true" />
+      <Event Name="DragLeave" Hidden="true" />
+      <Event Name="DragOver" Hidden="true" />
+      <Method Name="DrawToBitmap" Hidden="true" />
+      <Property Name="Enabled" Hidden="true" />
+      <Event Name="EnabledChanged" Hidden="true" />
+      <Method Name="EndInvoke" Hidden="true" />
+      <Event Name="Enter" Hidden="true" />
+      <Method Name="FindForm" Hidden="true" />
+      <Method Name="Focus" Hidden="true" />
+      <Property Name="Focused" Hidden="true" />
+      <Property Name="Font" Hidden="true" />
+      <Event Name="FontChanged" Hidden="true" />
+      <Property Name="FontHeight" Hidden="true" />
+      <Property Name="ForeColor" Hidden="true" />
+      <Event Name="ForeColorChanged" Hidden="true" />
+      <Method Name="FromChildHandle" Hidden="true" />
+      <Method Name="FromHandle" Hidden="true" />
+      <Method Name="GetAccessibilityObjectById" Hidden="true" />
+      <Method Name="GetAutoSizeMode" Hidden="true" />
+      <Method Name="GetChildAtPoint" Hidden="true" />
+      <Method Name="GetContainerControl" Hidden="true" />
+      <Method Name="GetNextControl" Hidden="true" />
+      <Method Name="GetPreferredSize" Hidden="true" />
+      <Method Name="GetScaledBounds" Hidden="true" />
+      <Method Name="GetStyle" Hidden="true" />
+      <Method Name="GetTopLevel" Hidden="true" />
+      <Event Name="GiveFeedback" Hidden="true" />
+      <Event Name="GotFocus" Hidden="true" />
+      <Property Name="Handle" Hidden="true" />
+      <Event Name="HandleCreated" Hidden="true" />
+      <Event Name="HandleDestroyed" Hidden="true" />
+      <Property Name="HasChildren" Hidden="true" />
+      <Property Name="Height" Hidden="true" />
+      <Event Name="HelpRequested" Hidden="true" />
+      <Method Name="Hide" Hidden="true" />
+      <Property Name="ImeMode" Hidden="true" />
+      <Property Name="ImeModeBase" Hidden="true" />
+      <Event Name="ImeModeChanged" Hidden="true" />
+      <Method Name="InitLayout" Hidden="true" />
+      <Method Name="Invalidate" Hidden="true" />
+      <Event Name="Invalidated" Hidden="true" />
+      <Method Name="Invoke" Hidden="true" />
+      <Method Name="InvokeGotFocus" Hidden="true" />
+      <Method Name="InvokeLostFocus" Hidden="true" />
+      <Method Name="InvokeOnClick" Hidden="true" />
+      <Method Name="InvokePaint" Hidden="true" />
+      <Method Name="InvokePaintBackground" Hidden="true" />
+      <Property Name="InvokeRequired" Hidden="true" />
+      <Property Name="IsAccessible" Hidden="true" />
+      <Property Name="IsDisposed" Hidden="true" />
+      <Property Name="IsHandleCreated" Hidden="true" />
+      <Method Name="IsInputChar" Hidden="true" />
+      <Method Name="IsInputKey" Hidden="true" />
+      <Method Name="IsKeyLocked" Hidden="true" />
+      <Property Name="IsMirrored" Hidden="true" />
+      <Method Name="IsMnemonic" Hidden="true" />
+      <Event Name="KeyDown" Hidden="true" />
+      <Event Name="KeyPress" Hidden="true" />
+      <Event Name="KeyUp" Hidden="true" />
+      <Event Name="Layout" Hidden="true" />
+      <Property Name="LayoutEngine" Hidden="true" />
+      <Event Name="Leave" Hidden="true" />
+      <Property Name="Left" Hidden="true" />
+      <Property Name="Location" Hidden="true" />
+      <Event Name="LocationChanged" Hidden="true" />
+      <Event Name="LostFocus" Hidden="true" />
+      <Property Name="Margin" Hidden="true" />
+      <Event Name="MarginChanged" Hidden="true" />
+      <Property Name="MaximumSize" Hidden="true" />
+      <Property Name="MinimumSize" Hidden="true" />
+      <Property Name="ModifierKeys" Hidden="true" />
+      <Property Name="MouseButtons" Hidden="true" />
+      <Event Name="MouseCaptureChanged" Hidden="true" />
+      <Event Name="MouseClick" Hidden="true" />
+      <Event Name="MouseDoubleClick" Hidden="true" />
+      <Event Name="MouseDown" Hidden="true" />
+      <Event Name="MouseEnter" Hidden="true" />
+      <Event Name="MouseHover" Hidden="true" />
+      <Event Name="MouseLeave" Hidden="true" />
+      <Event Name="MouseMove" Hidden="true" />
+      <Property Name="MousePosition" Hidden="true" />
+      <Event Name="MouseUp" Hidden="true" />
+      <Event Name="MouseWheel" Hidden="true" />
+      <Event Name="Move" Hidden="true" />
+      <Property Name="Name" Hidden="true" />
+      <Method Name="NotifyInvalidate" Hidden="true" />
+      <Method Name="OnAutoSizeChanged" Hidden="true" />
+      <Method Name="OnBackColorChanged" Hidden="true" />
+      <Method Name="OnBackgroundImageChanged" Hidden="true" />
+      <Method Name="OnBackgroundImageLayoutChanged" Hidden="true" />
+      <Method Name="OnBindingContextChanged" Hidden="true" />
+      <Method Name="OnCausesValidationChanged" Hidden="true" />
+      <Method Name="OnChangeUICues" Hidden="true" />
+      <Method Name="OnClick" Hidden="true" />
+      <Method Name="OnClientSizeChanged" Hidden="true" />
+      <Method Name="OnContextMenuChanged" Hidden="true" />
+      <Method Name="OnContextMenuStripChanged" Hidden="true" />
+      <Method Name="OnControlAdded" Hidden="true" />
+      <Method Name="OnControlRemoved" Hidden="true" />
+      <Method Name="OnCreateControl" Hidden="true" />
+      <Method Name="OnCursorChanged" Hidden="true" />
+      <Method Name="OnDockChanged" Hidden="true" />
+      <Method Name="OnDoubleClick" Hidden="true" />
+      <Method Name="OnDragDrop" Hidden="true" />
+      <Method Name="OnDragEnter" Hidden="true" />
+      <Method Name="OnDragLeave" Hidden="true" />
+      <Method Name="OnDragOver" Hidden="true" />
+      <Method Name="OnEnabledChanged" Hidden="true" />
+      <Method Name="OnEnter" Hidden="true" />
+      <Method Name="OnFontChanged" Hidden="true" />
+      <Method Name="OnForeColorChanged" Hidden="true" />
+      <Method Name="OnGiveFeedback" Hidden="true" />
+      <Method Name="OnGotFocus" Hidden="true" />
+      <Method Name="OnHandleCreated" Hidden="true" />
+      <Method Name="OnHandleDestroyed" Hidden="true" />
+      <Method Name="OnHelpRequested" Hidden="true" />
+      <Method Name="OnImeModeChanged" Hidden="true" />
+      <Method Name="OnInvalidated" Hidden="true" />
+      <Method Name="OnKeyDown" Hidden="true" />
+      <Method Name="OnKeyPress" Hidden="true" />
+      <Method Name="OnKeyUp" Hidden="true" />
+      <Method Name="OnLayout" Hidden="true" />
+      <Method Name="OnLeave" Hidden="true" />
+      <Method Name="OnLocationChanged" Hidden="true" />
+      <Method Name="OnLostFocus" Hidden="true" />
+      <Method Name="OnMarginChanged" Hidden="true" />
+      <Method Name="OnMouseCaptureChanged" Hidden="true" />
+      <Method Name="OnMouseClick" Hidden="true" />
+      <Method Name="OnMouseDoubleClick" Hidden="true" />
+      <Method Name="OnMouseDown" Hidden="true" />
+      <Method Name="OnMouseEnter" Hidden="true" />
+      <Method Name="OnMouseHover" Hidden="true" />
+      <Method Name="OnMouseLeave" Hidden="true" />
+      <Method Name="OnMouseMove" Hidden="true" />
+      <Method Name="OnMouseUp" Hidden="true" />
+      <Method Name="OnMouseWheel" Hidden="true" />
+      <Method Name="OnMove" Hidden="true" />
+      <Method Name="OnNotifyMessage" Hidden="true" />
+      <Method Name="OnPaddingChanged" Hidden="true" />
+      <Method Name="OnPaint" Hidden="true" />
+      <Method Name="OnPaintBackground" Hidden="true" />
+      <Method Name="OnParentBackColorChanged" Hidden="true" />
+      <Method Name="OnParentBackgroundImageChanged" Hidden="true" />
+      <Method Name="OnParentBindingContextChanged" Hidden="true" />
+      <Method Name="OnParentChanged" Hidden="true" />
+      <Method Name="OnParentCursorChanged" Hidden="true" />
+      <Method Name="OnParentEnabledChanged" Hidden="true" />
+      <Method Name="OnParentFontChanged" Hidden="true" />
+      <Method Name="OnParentForeColorChanged" Hidden="true" />
+      <Method Name="OnParentRightToLeftChanged" Hidden="true" />
+      <Method Name="OnParentVisibleChanged" Hidden="true" />
+      <Method Name="OnPreviewKeyDown" Hidden="true" />
+      <Method Name="OnPrint" Hidden="true" />
+      <Method Name="OnQueryContinueDrag" Hidden="true" />
+      <Method Name="OnRegionChanged" Hidden="true" />
+      <Method Name="OnResize" Hidden="true" />
+      <Method Name="OnRightToLeftChanged" Hidden="true" />
+      <Method Name="OnSizeChanged" Hidden="true" />
+      <Method Name="OnStyleChanged" Hidden="true" />
+      <Method Name="OnSystemColorsChanged" Hidden="true" />
+      <Method Name="OnTabIndexChanged" Hidden="true" />
+      <Method Name="OnTabStopChanged" Hidden="true" />
+      <Method Name="OnTextChanged" Hidden="true" />
+      <Method Name="OnValidated" Hidden="true" />
+      <Method Name="OnValidating" Hidden="true" />
+      <Method Name="OnVisibleChanged" Hidden="true" />
+      <Property Name="Padding" Hidden="true" />
+      <Event Name="PaddingChanged" Hidden="true" />
+      <Event Name="Paint" Hidden="true" />
+      <Property Name="Parent" Hidden="true" />
+      <Event Name="ParentChanged" Hidden="true" />
+      <Method Name="PerformLayout" Hidden="true" />
+      <Method Name="PointToClient" Hidden="true" />
+      <Method Name="PointToScreen" Hidden="true" />
+      <Property Name="PreferredSize" Hidden="true" />
+      <Method Name="PreProcessControlMessage" Hidden="true" />
+      <Method Name="PreProcessMessage" Hidden="true" />
+      <Event Name="PreviewKeyDown" Hidden="true" />
+      <Method Name="ProcessCmdKey" Hidden="true" />
+      <Method Name="ProcessDialogChar" Hidden="true" />
+      <Method Name="ProcessDialogKey" Hidden="true" />
+      <Method Name="ProcessKeyEventArgs" Hidden="true" />
+      <Method Name="ProcessKeyMessage" Hidden="true" />
+      <Method Name="ProcessKeyPreview" Hidden="true" />
+      <Method Name="ProcessMnemonic" Hidden="true" />
+      <Property Name="ProductName" Hidden="true" />
+      <Property Name="ProductVersion" Hidden="true" />
+      <Property Name="PropagatingImeMode" Hidden="true" />
+      <Event Name="QueryAccessibilityHelp" Hidden="true" />
+      <Event Name="QueryContinueDrag" Hidden="true" />
+      <Method Name="RaiseDragEvent" Hidden="true" />
+      <Method Name="RaiseKeyEvent" Hidden="true" />
+      <Method Name="RaiseMouseEvent" Hidden="true" />
+      <Method Name="RaisePaintEvent" Hidden="true" />
+      <Method Name="RecreateHandle" Hidden="true" />
+      <Property Name="RecreatingHandle" Hidden="true" />
+      <Method Name="RectangleToClient" Hidden="true" />
+      <Method Name="RectangleToScreen" Hidden="true" />
+      <Method Name="ReflectMessage" Hidden="true" />
+      <Method Name="Refresh" Hidden="true" />
+      <Property Name="Region" Hidden="true" />
+      <Event Name="RegionChanged" Hidden="true" />
+      <Property Name="RenderRightToLeft" Hidden="true" />
+      <Method Name="ResetBackColor" Hidden="true" />
+      <Method Name="ResetBindings" Hidden="true" />
+      <Method Name="ResetCursor" Hidden="true" />
+      <Method Name="ResetFont" Hidden="true" />
+      <Method Name="ResetForeColor" Hidden="true" />
+      <Method Name="ResetImeMode" Hidden="true" />
+      <Method Name="ResetMouseEventArgs" Hidden="true" />
+      <Method Name="ResetRightToLeft" Hidden="true" />
+      <Method Name="ResetText" Hidden="true" />
+      <Event Name="Resize" Hidden="true" />
+      <Property Name="ResizeRedraw" Hidden="true" />
+      <Method Name="ResumeLayout" Hidden="true" />
+      <Property Name="Right" Hidden="true" />
+      <Property Name="RightToLeft" Hidden="true" />
+      <Event Name="RightToLeftChanged" Hidden="true" />
+      <Method Name="RtlTranslateAlignment" Hidden="true" />
+      <Method Name="RtlTranslateContent" Hidden="true" />
+      <Method Name="RtlTranslateHorizontal" Hidden="true" />
+      <Method Name="RtlTranslateLeftRight" Hidden="true" />
+      <Method Name="Scale" Hidden="true" />
+      <Property Name="ScaleChildren" Hidden="true" />
+      <Method Name="ScaleControl" Hidden="true" />
+      <Method Name="ScaleCore" Hidden="true" />
+      <Method Name="Select" Hidden="true" />
+      <Method Name="SelectNextControl" Hidden="true" />
+      <Method Name="SendToBack" Hidden="true" />
+      <Method Name="SetAutoSizeMode" Hidden="true" />
+      <Method Name="SetBounds" Hidden="true" />
+      <Method Name="SetBoundsCore" Hidden="true" />
+      <Method Name="SetClientSizeCore" Hidden="true" />
+      <Method Name="SetStyle" Hidden="true" />
+      <Method Name="SetTopLevel" Hidden="true" />
+      <Method Name="SetVisibleCore" Hidden="true" />
+      <Method Name="Show" Hidden="true" />
+      <Property Name="ShowFocusCues" Hidden="true" />
+      <Property Name="ShowKeyboardCues" Hidden="true" />
+      <Property Name="Site" Hidden="true" />
+      <Property Name="Size" Hidden="true" />
+      <Event Name="SizeChanged" Hidden="true" />
+      <Method Name="SizeFromClientSize" Hidden="true" />
+      <Event Name="StyleChanged" Hidden="true" />
+      <Method Name="SuspendLayout" Hidden="true" />
+      <Event Name="SystemColorsChanged" Hidden="true" />
+      <Property Name="TabIndex" Hidden="true" />
+      <Event Name="TabIndexChanged" Hidden="true" />
+      <Property Name="TabStop" Hidden="true" />
+      <Event Name="TabStopChanged" Hidden="true" />
+      <Property Name="Tag" Hidden="true" />
+      <Property Name="Text" Hidden="true" />
+      <Event Name="TextChanged" Hidden="true" />
+      <Property Name="Top" Hidden="true" />
+      <Property Name="TopLevelControl" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+      <Method Name="UpdateBounds" Hidden="true" />
+      <Method Name="UpdateStyles" Hidden="true" />
+      <Method Name="UpdateZOrder" Hidden="true" />
+      <Property Name="UseWaitCursor" Hidden="true" />
+      <Event Name="Validated" Hidden="true" />
+      <Event Name="Validating" Hidden="true" />
+      <Property Name="Visible" Hidden="true" />
+      <Event Name="VisibleChanged" Hidden="true" />
+      <Property Name="Width" Hidden="true" />
+      <Property Name="WindowTarget" Hidden="true" />
+      <Method Name="WndProc" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Protected" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="System.Windows.Forms.Control.ControlCollection" Collapsed="true">
+        <TypeIdentifier />
+        <Lollipop Position="0.2" />
+      </Class>
+      <Class Name="System.Windows.Forms.Control.ControlAccessibleObject" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Unclassified.Drawing.ColorMath">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="Blend" Hidden="true" />
+      <Method Name="Darken" Hidden="true" />
+      <Method Name="IsDarkColor" Hidden="true" />
+      <Method Name="Lighten" Hidden="true" />
+      <Method Name="Mod" Hidden="true" />
+      <Method Name="RgbToHsl" Hidden="true" />
+      <Method Name="ToGray" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAQAAAAAAAAkQAAEAAAAAgCAAAAAA=</HashCode>
+      <FileName>Libraries\ColorMath.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Unclassified.Drawing.HslColor" Collapsed="true">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARIAAAESAAAA=</HashCode>
+      <FileName>Libraries\ColorMath.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="ArduinoDMX.Instruction">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAIAAAEABAAAA=</HashCode>
+      <FileName>Instruction.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
