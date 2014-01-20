@@ -10,8 +10,6 @@ namespace ArduinoDMX
         static void Main(string[] args)
         {
             Application.EnableVisualStyles();
-
-            //Application.Run(new UserInterface());
             Application.Run(new UserInterface());
         }
     }

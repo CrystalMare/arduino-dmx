@@ -18,8 +18,6 @@ namespace ArduinoDMX
 
         private Dictionary<ushort, byte> _localDmx = new Dictionary<ushort, byte>();
 
-        private Boolean _valid;
-
         private readonly byte[] _discoverMessage = { (byte)Instruction.Discover };
         private readonly byte[] _clearMessage = { (byte)Instruction.Clear, byte.MinValue, byte.MinValue, byte.MinValue, (byte)Instruction.Stop };
 
@@ -133,7 +131,7 @@ namespace ArduinoDMX
             Console.WriteLine(_serial.ReadLine());
         }
 
-        protected void Dispose()
+        public void Dispose()
         {
             _keepConnection = false;
             while (_connection.IsAlive);
