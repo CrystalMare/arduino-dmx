@@ -21,25 +21,13 @@ namespace ArduinoDMX
         public string port;
         public bool newPort;
 
+        private bool active;
+
         private const ushort LedPunchChannel = 1;
 
         public UserInterface()
         {
             InitializeComponent();
-            setLabelState(false);
-        }
-
-        private void setLabelState(Boolean state) {
-            if (state)
-            {
-                arduinoStatusLabel.ForeColor = Color.Green;
-                arduinoStatusLabel.Text = "Ready";
-            }
-            else
-            {
-                arduinoStatusLabel.ForeColor = Color.Red;
-                arduinoStatusLabel.Text = "Not Ready";
-            }
         }
 
         private int Map(int x, int in_min, int in_max, int out_min, int out_max)
@@ -98,8 +86,21 @@ namespace ArduinoDMX
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
+            if (!active) return;
             if (trackBar1.Value == 0) _arduino.DmxSet(LedPunchChannel + 4, 0);
             else _arduino.DmxSet(LedPunchChannel + 4, (byte)Map(trackBar1.Value, 0, 100, 16, 255));
+        }
+
+        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.active = false;
+            _selector = new PortSelector(this);
+            _selector.ShowDialog();
+            if (newPort)
+            {
+                newPort = false;
+                StartArduino(port, 9600);
+            }
         }
     }
 }

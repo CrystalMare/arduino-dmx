@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
-  <Comment CommentText="Arduino via Serial @ 9660 bit/sec&#xD;&#xA;">
+  <Comment CommentText="Arduino via Serial @ 9600 bit/sec&#xD;&#xA;">
     <Position X="10.688" Y="4.104" Height="0.291" Width="2.075" />
   </Comment>
   <Class Name="ArduinoDMX.SerialConnector">
     <Position X="8.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAACCAAAAgAQCAAAAgAQAACAQCAACIABQAARAA=</HashCode>
+      <HashCode>AgAAAAAACCAAAAgAQCAAAAgAQAACAQCAACIABAAARAA=</HashCode>
       <FileName>SerialConnector.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -20,22 +20,18 @@
     <Position X="3" Y="0.5" Width="1.5" />
     <Members>
       <Field Name="arduinoDMXToolStripMenuItem" Hidden="true" />
-      <Field Name="arduinoStatusLabel" Hidden="true" />
       <Field Name="components" Hidden="true" />
       <Method Name="Dispose" Hidden="true" />
       <Field Name="exitToolStripMenuItem" Hidden="true" />
       <Method Name="InitializeComponent" Hidden="true" />
       <Field Name="menuStrip1" Hidden="true" />
-      <Method Name="setLabelState" Hidden="true" />
-      <Field Name="statusStrip1" Hidden="true" />
-      <Field Name="toolStripSplitButton1" Hidden="true" />
       <Field Name="trackBar1" Hidden="true" />
       <Method Name="trackBar1_ValueChanged" Hidden="true" />
       <Method Name="UserInterface_FormClosed" Hidden="true" />
       <Method Name="UserInterface_Shown" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AUCAQAACADAABEAAAAGAAAAGAAgAAAgEgCgAAlIAAAk=</HashCode>
+      <HashCode>AUCAAAACCDAAAEAAAAGAABAGAAgAAAgEgCAAInIAAAg=</HashCode>
       <FileName>UserInterface.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -66,7 +62,7 @@
       <Method Name="InitializeComponent" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAAAAAEAACAAAAIAAACAAAACCAA4AAAAAGACAAAAAAA=</HashCode>
+      <HashCode>AAAAAAEAACAAAAIAAACAAAACCAA4AAAAAHACAAAAAAA=</HashCode>
       <FileName>PortSelector.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -82,11 +78,6 @@
   </Class>
   <Class Name="System.Windows.Forms.Form" Collapsed="true">
     <Position X="3" Y="4.5" Width="1.5" />
-    <NestedTypes>
-      <Class Name="System.Windows.Forms.Form.ControlCollection" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-    </NestedTypes>
     <TypeIdentifier />
   </Class>
   <Class Name="System.IO.Ports.SerialPort" Collapsed="true">
