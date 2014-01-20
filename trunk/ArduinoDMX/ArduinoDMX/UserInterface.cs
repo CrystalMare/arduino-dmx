@@ -28,6 +28,24 @@ namespace ArduinoDMX
         public UserInterface()
         {
             InitializeComponent();
+            setLabel(false);
+
+            colorWheel1.Saturation = 255;
+            colorWheel1.Lightness = 127;
+        }
+
+        private void setLabel(bool state)
+        {
+            if (state)
+            {
+                arduinoStatusLabel.ForeColor = Color.Green;
+                arduinoStatusLabel.Text = "Ready";
+            }
+            else
+            {
+                arduinoStatusLabel.ForeColor = Color.Red;
+                arduinoStatusLabel.Text = "Not Ready";
+            }
         }
 
         private int Map(int x, int in_min, int in_max, int out_min, int out_max)
@@ -73,6 +91,7 @@ namespace ArduinoDMX
             colorWheel1.Saturation = 255;
             colorWheel1.Lightness = 127;
             active = true;
+            setLabel(active);
         }
 
         private void colorWheel1_MouseUp(object sender, EventArgs e)
@@ -101,6 +120,20 @@ namespace ArduinoDMX
                 newPort = false;
                 StartArduino(port, 9600);
             }
+        }
+
+        private void disconnectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_arduino != null) _arduino.Dispose();
+            active = false;
+            setLabel(active);
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!active) return;
+            if (!checkBox2.Checked) _arduino.DmxSet(LedPunchChannel + 5, 0);
+            else _arduino.DmxSet(LedPunchChannel + 5, 255); 
         }
     }
 }
