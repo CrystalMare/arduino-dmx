@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ArduinoDMX
+﻿namespace ArduinoDMX
 {
+    /// <summary>
+    /// Represents an Instruction byte for a Dmx Request
+    /// </summary>
     public enum Instruction : byte
     {
         Set = 53,

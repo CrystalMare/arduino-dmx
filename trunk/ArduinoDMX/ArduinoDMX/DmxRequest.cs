@@ -14,13 +14,25 @@
             Fixture = fixture;
             Instruction = i;
         }
+
         /// <summary>
         /// An emtpy DMX Request that can contain all information for a DMX Request
         /// </summary>
         public DmxRequest() { }
 
+        /// <summary>
+        /// The Channel of this request
+        /// </summary>
         public ushort Channel           { get; set; }
+
+        /// <summary>
+        /// The Fixture of this channel
+        /// </summary>
         public byte Fixture             { get; set; }
+
+        /// <summary>
+        /// The Instruction type of this request
+        /// </summary>
         public Instruction Instruction  { get; set; }
     }
 }

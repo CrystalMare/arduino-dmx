@@ -1,21 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using Unclassified.Drawing;
-using System.Threading;
 
 namespace ArduinoDMX
 {
     public partial class UserInterface : Form
     {
-
+        /// <summary>
+        /// The arduino to use for sending DMX Fixtures.
+        /// </summary>
         private SerialConnector _arduino;
 
+        /// <summary>
+        /// 
+        /// </summary>
         private PortSelector _selector;
 
         public string port;

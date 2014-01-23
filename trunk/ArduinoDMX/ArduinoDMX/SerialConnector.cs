@@ -5,20 +5,55 @@ using System.Threading;
 
 namespace ArduinoDMX
 {
+    /// <summary>
+    /// Can connect to arduino and communicate using the DMXArduino protocol.
+    /// This is also the main way to send requests to the Arduino.
+    /// </summary>
     class SerialConnector
     {
-        private int _baudrate;
-        private string _port;
+        /// <summary>
+        /// Represents the baudrate of this Connector
+        /// </summary>
+        readonly private int _baudrate;
 
+        /// <summary>
+        /// Represents the port of this Connector
+        /// </summary>
+        readonly private string _port;
+
+        /// <summary>
+        /// The physical connection to the Arduino
+        /// </summary>
         private SerialPort _serial;
+
+        /// <summary>
+        /// Handles requests and timing with Arduino
+        /// </summary>
         private Thread _connection;
+
+        /// <summary>
+        /// True if _connection must stay alive
+        /// </summary>
         private Boolean _keepConnection = true;
 
+        /// <summary>
+        /// A list that contains requests, it follows FIFO rules.
+        /// </summary>
         private LinkedList<DmxRequest> _requests = new LinkedList<DmxRequest>();
 
+        /// <summary>
+        /// Local DMX cache.
+        /// </summary>
         private Dictionary<ushort, byte> _localDmx = new Dictionary<ushort, byte>();
 
+        /// <summary>
+        /// Represents a ready to send message to discover if COM port is valid.
+        /// </summary>
         private readonly byte[] _discoverMessage = { (byte)Instruction.Discover };
+
+        /// <summary>
+        /// Represents a ready to send message to clear all DMX fixtures.
+        /// </summary>
         private readonly byte[] _clearMessage = { (byte)Instruction.Clear, byte.MinValue, byte.MinValue, byte.MinValue, (byte)Instruction.Stop };
 
         /// <summary>
@@ -131,6 +166,9 @@ namespace ArduinoDMX
             Console.WriteLine(_serial.ReadLine());
         }
 
+        /// <summary>
+        /// Disconnects arduino and clears up all resources used by this object.
+        /// </summary>
         public void Dispose()
         {
             _keepConnection = false;
@@ -139,11 +177,20 @@ namespace ArduinoDMX
             _serial.Dispose();
         }
 
+        /// <summary>
+        /// Sends a request to the arduino to clear all DMX fixtures.
+        /// </summary>
         public void ResetFixtures()
         {
             _requests.AddFirst(new DmxRequest(1, 1, Instruction.Clear));
         }
 
+        /// <summary>
+        /// Test if the COM port is valid. Can only work if _port == null
+        /// </summary>
+        /// <param name="port">The port to test</param>
+        /// <param name="speed">The speed of this port</param>
+        /// <returns>True if device is valid</returns>
         public Boolean TestConnection(string port, int speed)
         {
             //Check if initialized via normal constructor
