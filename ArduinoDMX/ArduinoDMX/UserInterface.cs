@@ -14,17 +14,33 @@ namespace ArduinoDMX
         private SerialConnector _arduino;
 
         /// <summary>
-        /// 
+        /// The interface the user can use to select a COM port
         /// </summary>
         private PortSelector _selector;
 
+        /// <summary>
+        /// The COM port that will be connected to next time StartArduino() is called.
+        /// </summary>
         public string port;
+
+        /// <summary>
+        /// True if a new connection must be started.
+        /// </summary>
         public bool newPort;
 
+        /// <summary>
+        /// True if there is a connection alive.
+        /// </summary>
         private bool active;
 
+        /// <summary>
+        /// Represents the Address on wich the LedPunch Pro is set.
+        /// </summary>
         private const ushort LedPunchChannel = 1;
 
+        /// <summary>
+        /// Creates a new UserInterface, this is also the primary interface for the application.
+        /// </summary>
         public UserInterface()
         {
             InitializeComponent();
@@ -34,6 +50,10 @@ namespace ArduinoDMX
             colorWheel1.Lightness = 127;
         }
 
+        /// <summary>
+        /// Sets status label to value indication state of application.
+        /// </summary>
+        /// <param name="state">The state of the connection</param>
         private void setLabel(bool state)
         {
             if (state)
@@ -48,16 +68,33 @@ namespace ArduinoDMX
             }
         }
 
+        /// <summary>
+        /// Returns a value that can be re-mapped
+        /// </summary>
+        /// <param name="x">Value to be mapped</param>
+        /// <param name="in_min">Input lower bounds</param>
+        /// <param name="in_max">Input upper bounds</param>
+        /// <param name="out_min">Output lower bounds</param>
+        /// <param name="out_max">Output upper bounds</param>
+        /// <returns>The re-mapped value</returns>
         private int Map(int x, int in_min, int in_max, int out_min, int out_max)
         {
             return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
         }
 
+        /// <summary>
+        /// Called when menu button "Application > Exit" is pressed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        /// <summary>
+        /// Releases all resources and exists application.
+        /// </summary>
         private void exitApplication()
         {
             if (_arduino != null) _arduino.Dispose();
@@ -65,11 +102,21 @@ namespace ArduinoDMX
             Application.Exit();
         }
 
+        /// <summary>
+        /// Called when user pressed X on the window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UserInterface_FormClosed(object sender, FormClosedEventArgs e)
         {
             exitApplication();
         }
 
+        /// <summary>
+        /// Called after Interface is ready, and shown to the user.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UserInterface_Shown(object sender, EventArgs e)
         {
             _selector = new PortSelector(this);
@@ -81,6 +128,11 @@ namespace ArduinoDMX
             }
         }
 
+        /// <summary>
+        /// Starts a new connection on specified COM port and speed.
+        /// </summary>
+        /// <param name="port">The COM port to connect to</param>
+        /// <param name="speed">The speed of this port</param>
         private void StartArduino(string port, int speed)
         {
             _arduino = new SerialConnector(port, speed);
@@ -94,6 +146,12 @@ namespace ArduinoDMX
             setLabel(active);
         }
 
+        /// <summary>
+        /// Called when user released mouse after clicking colorwheel
+        /// Sends requests to Arduino
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void colorWheel1_MouseUp(object sender, EventArgs e)
         {
             if (!active) return;
@@ -103,6 +161,12 @@ namespace ArduinoDMX
             _arduino.DmxSet(LedPunchChannel + 2, c.B);
         }
 
+        /// <summary>
+        /// Called if value on the trackbar is changed.
+        /// Sends requests to the arduino.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
             if (!active) return;
@@ -110,6 +174,11 @@ namespace ArduinoDMX
             else _arduino.DmxSet(LedPunchChannel + 4, (byte)Map(trackBar1.Value, 0, 100, 16, 255));
         }
 
+        /// <summary>
+        /// Called when menu item "Arudino > Connect" is pressed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.active = false;
@@ -122,6 +191,11 @@ namespace ArduinoDMX
             }
         }
 
+        /// <summary>
+        /// Called when menu item "Arduino > Disconnect" is pressed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void disconnectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_arduino != null) _arduino.Dispose();
@@ -129,6 +203,11 @@ namespace ArduinoDMX
             setLabel(active);
         }
 
+        /// <summary>
+        /// Called if the checkbox has changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             if (!active) return;
