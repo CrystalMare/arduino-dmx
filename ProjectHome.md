@@ -1,0 +1,1 @@
+This application has a windows form that allows the user to control DMX using an Arduino
